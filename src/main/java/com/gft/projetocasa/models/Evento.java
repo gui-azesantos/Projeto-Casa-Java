@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,11 +28,14 @@ public class Evento {
 	@NotNull(message = "Nome é um campo obrigatório!")
 	private String nome;
 	
+	@NotNull(message = "Capacidade é um campo obrigatório!")
+	@DecimalMin(value = "1")
+	public int capacidade;
+	
 	@ManyToOne
+	@JoinColumn(name="local", nullable=false)
 	private Local local;
-	
-	private String estilo;
-	
+		
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date data;
@@ -39,16 +43,16 @@ public class Evento {
 	@DateTimeFormat(pattern = "hh:mm")
 	@Temporal(TemporalType.TIME)
 	private Date hora;
-
-	@NotNull(message= "Quantidade de Ingressos é um campo obrigatório!")
-	@DecimalMin(value = "1")
-	private int qtdIngresso;
 	
-	@NotNull(message= "Valor é um campo obrigatório!")
-	@DecimalMin(value = "0.01" , message = "Error: Valor não pode ser menor que 'R$0,01' !")
-	@DecimalMax(value = "9999999.99", message = "Error: Valor não pode ser maior que 'R$9.999.999,99' !")
+	private int qtdIngresso = capacidade;
+
+	private String estilo;
+	
+	@NotNull(message= "Preço é um campo obrigatório!")
+	@DecimalMin(value = "0.01" , message = "Error: Preço não pode ser menor que 'R$0,01' !")
+	@DecimalMax(value = "9999999.99", message = "Error: Preço não pode ser maior que 'R$9.999.999,99' !")
 	@NumberFormat(pattern = "#,##0.00")
-	private BigDecimal valorIngresso;
+	private BigDecimal preco;
 
 	public Long getId() {
 		return id;
@@ -62,8 +66,16 @@ public class Evento {
 		return nome;
 	}
 
+	
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public int getCapacidade() {
+		return capacidade;
+	}
+	
+	public void setCapacidade(int capacidade) {
+		this.capacidade = capacidade;
 	}
 
 	public Local getLocal() {
@@ -106,12 +118,12 @@ public class Evento {
 		this.qtdIngresso = qtdIngresso;
 	}
 
-	public BigDecimal getValorIngresso() {
-		return valorIngresso;
+	public BigDecimal getPreco() {
+		return preco;
 	}
 
-	public void setValorIngresso(BigDecimal valorIngresso) {
-		this.valorIngresso = valorIngresso;
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 	
 	

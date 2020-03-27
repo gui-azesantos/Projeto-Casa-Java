@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+
+<section layout:fragment="RenderBody">
+
+	<div class="card">
+		<div class="card-header ">
+			<h1>Eventos</h1>
+			<a id="link" class="btn btn-link" href="/Evento/Criar">Novo</a>
+		</div>
+
+		<div class="card-body">
+
+
+
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th class="text-center">#</th>
+					<th>Nome</th>
+					<th class="text-center">Capacidade</th>
+					<th class="text-center">Local</th>
+					<th class="text-center">Data</th>
+					<th class="text-center">Hora</th>
+					<th class="text-center">Estilo</th>
+
+					<th>Ações</th>
+
+				</tr>
+
+				<tbody>
+					<tr th:each="evento : ${evento}">
+						<td class="text-center" th:text="${evento.id}"></td>
+						<td th:text="${evento.nome}"></td>
+						<td class="text-center" th:text="${{evento.capacidade}}"></td>
+						<td class="text-center" th:text="${{evento.local.nome}}"></td>
+						<td class="text-center" th:text="${{evento.data}}"></td>
+						<td class="text-center" th:text="${{evento.hora}}"></td>
+						<td class="text-center" th:text="${{evento.estilo}}"></td>
+						
+						
+							<!-- Botão de edição --> 
+						<td>
+						<a class="btn btn-link btn-xs"
+							th:href="@{/Evento/{id}(id=${evento.id})}" data-toggle="tooltip"
+							data-placement="top" title="Editar"> <span
+								class="fas fa-pencil-alt"></span>
+						</a>
+						<!-- Botão de Excluir --> <a class="btn btn-link btn-xs"
+							th:href="@{/Evento/Excluir/{id}(id=${evento.id})}"
+							data-toggle="tooltip" data-placement="top" title="Excluir"> <span
+								class="fas fa-trash-alt"></span></a>
+
+						</td>
+						
+					</tr>
+					<tr>
+						<td colspan="8" th:if="${#lists.isEmpty(evento)}">Nenhum evento
+							foi encontrado</td>
+					</tr>
+					
+
+				</tbody>
+
+			</table>
+
+		</div>
+
+	</div>
+</section>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+<head>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+<title>Novo Evento</title>
+</head>
+
+<section layout:fragment="criar">
+	<form class="form-horizontal" method="POST" action="/Evento"
+		th:object="${evento}">
+
+		<div layout:insert="Mensagem"></div>
+
+		<div class="card">
+			<div class="card-header">
+				<div class="clearfix">
+					<h5 class="card-title">Novo Local</h5>
+					<a class="btn btn-link link-card" href="/Evento/Index">Voltar
+						para a pesquisa</a>
+				</div>
+			</div>
+			<div class="card-body">
+
+				<input type="hidden" th:field="*{id}" />
+
+				<div class="form-group">
+					<label for="endereco" class="col-sm-2 control-label">Nome</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="nome"
+							th:field="*{nome}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="endereco" class="col-sm-2 control-label">Capacidade</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="capacidade"
+							th:field="*{capacidade}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="local" class="col-sm-2 control-label">Local do Evento</label>
+					<div class="col-sm-2">
+						<select class="form-control" name="local" th:field="*{local}">
+							<option th:each="local : ${local}" th:text="${local.nome}"
+								th:value="${local.id}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="dataVencimento" class="col-sm-2 control-label">Data
+						do Evento</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" id="data"
+							th:field="*{data}" data-provide="datepicker"
+							data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+							data-date-autoclose="true" data-date-today-highlight="true"
+							data-date-orientation="auto" />
+					</div>
+				</div>
+				
+			<!-- 	<div class="form-group">
+					<label for="endereco" class="col-sm-2 control-label">Hora</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="hora"
+							th:field="*{hora}" />
+					</div>
+				</div> -->
+					
+				<div class="form-group">
+					<label for="endereco" class="col-sm-2 control-label">Preço</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control js-currency" id="preco"
+							th:field="*{preco}" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary">Salvar</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</form>
+</section>
+
+</html>

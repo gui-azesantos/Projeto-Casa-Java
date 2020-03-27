@@ -25,7 +25,7 @@ public class Local {
 	@Size(max = 60, message = "O endereço não pode conter mais de 60 caracteres!")
 	private String endereco;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="local")
 	List<Evento> evento;
 	
 	public Long getId() {
@@ -50,6 +50,14 @@ public class Local {
 
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+
+	public List<Evento> getEvento() {
+		return evento;
+	}
+
+	public void setEvento(List<Evento> evento) {
+		this.evento = evento;
 	}
 	
 	
