@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+
+
+<section layout:fragment="RenderBody">
+
+	<div class="card">
+		<div class="card-header ">
+			<h1>Locais</h1>
+			<a id="link" class="btn btn-link" href="/Local/Criar">Novo</a>
+	</div>
+
+	<div class="card-body">
+		
+		
+		
+		<table class="table table-bordered table-striped">
+			<tr>
+				<th class="text-center">#</th>
+				<th>Nome</th>
+				<th class="text-center">Endereço</th>
+				<th>Ações</th>
+
+			</tr>
+
+			<tbody>
+				<tr th:each="local : ${local}">
+					<td class="text-center" th:text="${local.id}"></td>
+					<td th:text="${local.nome}"></td>
+					<td class="text-center" th:text="${{local.endereco}}"></td>
+					<td>
+							<!-- Botão de edição --> <a class="btn btn-link btn-xs"
+								th:href="@{/Local/{id}(id=${local.id})}"
+								data-toggle="tooltip" data-placement="top" title="Editar"> <span
+									class="fas fa-pencil-alt"></span>
+							</a> <!-- Botão de Excluir --> <a class="btn btn-link btn-xs"
+								th:href="@{/Local/Excluir/{id}(id=${local.id})}"
+								data-toggle="tooltip" data-placement="top" title="Excluir">
+									<span class="fas fa-trash-alt"></span></a>
+							
+					</td>
+				 </tr>
+				 <tr>
+				 	<td colspan="6" th:if="${#lists.isEmpty(local)}">Nenhum local foi encontrado</td>
+				 </tr>
+
+			</tbody>
+
+		</table>
+
+	</div>
+		
+	</div>
+</section>
+
+</html>

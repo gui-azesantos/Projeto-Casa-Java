@@ -1,0 +1,45 @@
+  
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"/>
+<title>	Eventos.com</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/site.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<link rel="stylesheet" href="/css/bootstrap-datepicker.standalone.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Monoton|Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	
+	<header layout:insert="Navbar"></header>
+	
+	<div id ="bm" class="container">
+		<section layout:fragment="RenderBody">
+		</section>
+	 </div>
+	 
+	 <div id ="bm" class="container">
+		<section layout:fragment="criar">
+		</section>
+	 </div>
+	
+
+<footer class="footer" id="footer">
+	
+	        <div class="container">
+	            &copy; 2020 - Guilherme de  Azevedo
+	        </div>
+</footer>
+	
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/bootstrap-datepicker.min.js"></script>
+<script src="/js/bootstrap-datepicker.br.min.js"></script>
+<script src="/js/jquery.maskMoney.min.js"></script>
+</body>
+</html>
