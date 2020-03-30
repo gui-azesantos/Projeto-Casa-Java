@@ -25,6 +25,7 @@ public class Local {
 	@Size(max = 60, message = "O endereço não pode conter mais de 60 caracteres!")
 	private String endereco;
 
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="local")
 	List<Evento> evento;
 	

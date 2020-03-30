@@ -20,7 +20,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="clearfix">
-					<h5 class="card-title">Novo Local</h5>
+					<h5 class="card-title">Novo Evento</h5>
 					<a class="btn btn-link link-card" href="/Evento/Index">Voltar
 						para a pesquisa</a>
 				</div>
@@ -43,11 +43,12 @@
 							th:field="*{capacidade}" />
 					</div>
 				</div>
+				
 				<div class="form-group">
 					<label for="local" class="col-sm-2 control-label">Local do Evento</label>
 					<div class="col-sm-2">
 						<select class="form-control" name="local" th:field="*{local}">
-							<option th:each="local : ${local}" th:text="${local.nome}"
+							<option th:each="local : ${todosLocais}" th:text="${local.nome}"
 								th:value="${local.id}"></option>
 						</select>
 					</div>
@@ -65,19 +66,44 @@
 					</div>
 				</div>
 				
-			<!-- 	<div class="form-group">
+				<div class="form-group">
 					<label for="endereco" class="col-sm-2 control-label">Hora</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control" id="hora"
-							th:field="*{hora}" />
+							th:field="*{hora}" placeholder="00:00"/>
 					</div>
-				</div> -->
+				</div> 
 					
 				<div class="form-group">
 					<label for="endereco" class="col-sm-2 control-label">Preço</label>
 					<div class="col-sm-4">
 						<input type="text" class="form-control js-currency" id="preco"
 							th:field="*{preco}" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+  				<label class="control-label col-sm-2 control-label">Estilo</label>
+  				<div class="col-sm-2">
+  					<select class="form-control" th:field="*{estilo}"> 
+   						<option value="0">Rock</option>
+					    <option value="1">Pop</option>
+					    <option value="2">Sertanejo</option>
+					    <option value="3">Samba</option>
+					    <option value="4">Funk</option>
+					    <option value="5">Forró</option>
+					    <option value="6">Axé</option>
+					    <option value="7">Eletrônica</option>
+					    <option value="8">Outro</option>
+					</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="endereco" class="col-sm-2 control-label">Url da Imagem</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="imagem"
+							th:field="*{imagem}" />
 					</div>
 				</div>
 

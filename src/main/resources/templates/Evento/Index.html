@@ -7,6 +7,7 @@
 
 <section layout:fragment="RenderBody">
 
+
 	<div class="card">
 		<div class="card-header ">
 			<h1>Eventos</h1>
@@ -17,54 +18,59 @@
 
 
 
-			<table class="table table-bordered table-striped">
-				<tr>
-					<th class="text-center">#</th>
-					<th>Nome</th>
-					<th class="text-center">Capacidade</th>
-					<th class="text-center">Local</th>
-					<th class="text-center">Data</th>
-					<th class="text-center">Hora</th>
-					<th class="text-center">Estilo</th>
+			<table id="evento" class="table table-bordered table-striped">
+				<thead
+					style="font-family: 'Alegreya Sans'; background-color: #6E3667; color: white; text-align: center">
+					<tr>
+						<th class="text-center">#</th>
+						<th class="text-center">Imagem</th>
+						<th>Nome</th>
+						<th class="text-center">Capacidade</th>
+						<th class="text-center">Local</th>
+						<th class="text-center">Data</th>
+						<th class="text-center">Hora</th>
+						<th class="text-center">Estilo</th>
 
-					<th>Ações</th>
-
-				</tr>
-
+						<th>Ações</th>
+					</tr>
+				</thead>
 				<tbody>
 					<tr th:each="evento : ${evento}">
 						<td class="text-center" th:text="${evento.id}"></td>
+						<td><img th:src="${{evento.imagem}}" class="img-thumbnail "
+							style="max-width: 300px;"></td>
 						<td th:text="${evento.nome}"></td>
 						<td class="text-center" th:text="${{evento.capacidade}}"></td>
 						<td class="text-center" th:text="${{evento.local.nome}}"></td>
 						<td class="text-center" th:text="${{evento.data}}"></td>
 						<td class="text-center" th:text="${{evento.hora}}"></td>
-						<td class="text-center" th:text="${{evento.estilo}}"></td>
-						
-						
-							<!-- Botão de edição --> 
-						<td>
-						<a class="btn btn-link btn-xs"
+
+						<!---Estilo---->
+						<td class="text-center" th:if="${evento.estilo == '0'}">Rock</td>
+						<td class="text-center" th:if="${evento.estilo == '1'}">Pop</td>
+						<td class="text-center" th:if="${evento.estilo == '2'}">Sertanejo</td>
+						<td class="text-center" th:if="${evento.estilo == '3'}">Samba</td>
+						<td class="text-center" th:if="${evento.estilo == '4'}">Funk</td>
+						<td class="text-center" th:if="${evento.estilo == '5'}">Forró</td>
+						<td class="text-center" th:if="${evento.estilo == '6'}">Axé</td>
+						<td class="text-center" th:if="${evento.estilo == '7'}">Eletrônica</td>
+						<td class="text-center" th:if="${evento.estilo == '8'}">Outro</td>
+
+						<!-- Botão de edição -->
+						<td><a class="btn btn-link btn-xs"
 							th:href="@{/Evento/{id}(id=${evento.id})}" data-toggle="tooltip"
 							data-placement="top" title="Editar"> <span
 								class="fas fa-pencil-alt"></span>
-						</a>
-						<!-- Botão de Excluir --> <a class="btn btn-link btn-xs"
+								
+						</a> <!-- Botão de Excluir --> <a class="btn btn-link btn-xs"
 							th:href="@{/Evento/Excluir/{id}(id=${evento.id})}"
 							data-toggle="tooltip" data-placement="top" title="Excluir"> <span
-								class="fas fa-trash-alt"></span></a>
-
-						</td>
-						
+								class="fas fa-trash-alt"></span></a></td>
 					</tr>
 					<tr>
-						<td colspan="8" th:if="${#lists.isEmpty(evento)}">Nenhum evento
-							foi encontrado</td>
+						<td colspan="8" th:if="${#lists.isEmpty(evento)}">Nenhum
+							evento foi encontrado</td>
 					</tr>
-					
-
-				</tbody>
-
 			</table>
 
 		</div>

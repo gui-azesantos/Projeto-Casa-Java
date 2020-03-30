@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.gft.projetocasa.models.Evento;
 import com.gft.projetocasa.models.Local;
+import com.gft.projetocasa.repository.LocalRepository;
 import com.gft.projetocasa.services.EventoServices;
 import com.gft.projetocasa.services.LocalServices;
 
@@ -26,7 +28,11 @@ public class EventoController {
 	
 	@Autowired
 	private LocalServices localservices;
+	
+	@Autowired
+	private LocalRepository localrepository;
 		
+	
 	// LISTAR
 	@RequestMapping("/Index")
 	public ModelAndView index() {
@@ -50,7 +56,7 @@ public class EventoController {
 
 	// SALVAR
 	@RequestMapping(method = RequestMethod.POST)
-	public String save(@Validated Evento evento, Errors errors, RedirectAttributes attributes) {
+	public String save( @Validated Evento evento, Errors errors, RedirectAttributes attributes) {
 
 		if (errors.hasErrors()) {
 			return "Evento/Criar";
@@ -60,7 +66,7 @@ public class EventoController {
 			attributes.addFlashAttribute("menssage", "Evento salvo com sucesso!");
 			return "redirect:/Evento/Index";
 		} catch (IllegalArgumentException e) {
-			return "Evento/Criar";
+				return "Evento/Criar";
 		}
 
 	}
@@ -82,5 +88,10 @@ public class EventoController {
 		services.deletar(evento);
 		return "redirect:/Evento/Index";
 	}
+	
+    @ModelAttribute("todosLocais")
+    public List<Local> todosLocais(){
+    	return localrepository.findAll();
+    }
 
 }

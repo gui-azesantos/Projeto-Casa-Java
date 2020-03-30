@@ -1,3 +1,8 @@
+body{
+    background-color: WhiteSmoke !important;
+    font-family: 'Bebas Neue', cursive;
+    }
+     
 .navbar-brand{
 	padding-top: 12px;
 	
@@ -9,13 +14,13 @@
 	margin-top: 15px;
 }
 
-img{
-	max-width: 50px;
-}
+
+
 .alert{
 	margin-left: 10px;
 	margin-right: 10px;
 }
+
 
 .link-card{
 	float: right;
@@ -25,4 +30,10 @@ img{
 .card-title{
 	float: left;
 	padding-top: 3px;
+}
+
+#titulo{
+    font-family: 'Monoton', cursive;
+    font-size:48px
+    
 }

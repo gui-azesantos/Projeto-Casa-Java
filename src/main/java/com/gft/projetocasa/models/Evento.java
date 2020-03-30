@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,7 +26,7 @@ public class Evento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message = "Nome é um campo obrigatório!")
+	@NotEmpty(message = "Nome é um campo obrigatório!")
 	private String nome;
 	
 	@NotNull(message = "Capacidade é um campo obrigatório!")
@@ -40,12 +41,15 @@ public class Evento {
 	@Temporal(TemporalType.DATE)
 	private Date data;
 	
-	@DateTimeFormat(pattern = "hh:mm")
+	@NotNull(message ="Data é obrigatória")
+	@DateTimeFormat(pattern = "HH:mm")
 	@Temporal(TemporalType.TIME)
 	private Date hora;
 	
+	
 	private int qtdIngresso = capacidade;
 
+	@NotEmpty(message = "Estilo é obrigatório")
 	private String estilo;
 	
 	@NotNull(message= "Preço é um campo obrigatório!")
@@ -53,6 +57,18 @@ public class Evento {
 	@DecimalMax(value = "9999999.99", message = "Error: Preço não pode ser maior que 'R$9.999.999,99' !")
 	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal preco;
+	
+	@NotEmpty(message="A Url imagem é obriagatória!")
+	private String imagem;
+
+	
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
 
 	public Long getId() {
 		return id;
