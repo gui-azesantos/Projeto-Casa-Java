@@ -1,0 +1,44 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="LayoutPadrao">
+    <style>
+     body{
+    background-color: red;
+    font-family: 'Bebas Neue', cursive;
+    }
+    </style>
+   
+       
+ <section layout:fragment="RenderBody">
+<div th:each=" evento : ${evento}" class="card text-white " style="border-color:#6E3667; border-width: 20px;  font-size:25px">
+  <img class="card-img" th:src="${{evento.imagem}}" alt="Imagem do card">
+  <div class="card-img-overlay">
+    <h2 class="card-title" id="titulo" ><span th:text="${{evento.nome}}"></span> </h2>
+    </div>
+     <div class="card-body" style="color: black; position:relative" >
+     <p class="card-text"><strong>Local: </strong><span th:text="${{evento.nome}}"></span></p>
+     <p class="card-text"><strong>Quantidade de Ingressos:</strong><span th:text="${{evento.capacidade}}"></span>  </p>
+     <p class="card-text"><strong>Data: </strong></strong><span th:text="${{evento.data}}"></span> </p>
+     <p class="card-text"><strong>Preço: R$ </strong></strong><span th:text="${{evento.preco}}"></span> 
+    
+    	<!---Estilo---->
+     <p class="card-text"><strong>Estilo:</strong>
+		<span class="text-center" th:if="${evento.estilo == '0'}">Rock</span>
+		<span class="text-center" th:if="${evento.estilo == '1'}">Pop</span>
+		<span class="text-center" th:if="${evento.estilo == '2'}">Sertanejo</span>
+		<span class="text-center" th:if="${evento.estilo == '3'}">Samba</span>
+		<span class="text-center" th:if="${evento.estilo == '4'}">Funk</span>
+		<span class="text-center" th:if="${evento.estilo == '5'}">Forró</span>
+		<span class="text-center" th:if="${evento.estilo == '6'}">Axé</span>
+		<span class="text-center" th:if="${evento.estilo == '7'}">Eletrônica</span>
+		<span class="text-center" th:if="${evento.estilo == '8'}">Outro</span>
+		</p>
+    
+ 
+  </div>
+    
+  </div>
+</section>
+   </html>

@@ -13,7 +13,7 @@ import com.gft.projetocasa.services.EventoServices;
 import com.gft.projetocasa.services.LocalServices;
 
 @Controller
-@RequestMapping("/Home")
+@RequestMapping
 public class HomeController {
 	
 	@Autowired
@@ -23,7 +23,17 @@ public class HomeController {
 	private LocalServices localservices;
 	
 
-	@RequestMapping
+	@RequestMapping("/Shows")
+	public ModelAndView shows() {
+		List<Evento> evento = services.listar();
+		List<Local> local = localservices.listar();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("local", local);
+		mv.addObject("evento", evento);
+		return mv;
+	}
+	
+	@RequestMapping("/Home")
 	public ModelAndView home() {
 		List<Evento> evento = services.listar();
 		List<Local> local = localservices.listar();
@@ -32,4 +42,5 @@ public class HomeController {
 		mv.addObject("evento", evento);
 		return mv;
 	}
+	
 }
